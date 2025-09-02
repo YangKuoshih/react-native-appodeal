@@ -6,8 +6,10 @@ import androidx.annotation.Nullable;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.appodeal.rnappodeal.constants.MrecEvents;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public class RNAppodealMrecViewManager extends SimpleViewManager<RCTAppodealMrecView> {
 
@@ -39,6 +41,12 @@ public class RNAppodealMrecViewManager extends SimpleViewManager<RCTAppodealMrec
     @Override
     public Map<String, Object> getExportedViewConstants() {
         return mrecViewManagerImpl.getExportedViewConstants();
+    }
+
+    @Nullable
+    @Override
+    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
+        return mrecViewManagerImpl.getExportedCustomDirectEventTypeConstants();
     }
 
     @ReactProp(name = "placement")

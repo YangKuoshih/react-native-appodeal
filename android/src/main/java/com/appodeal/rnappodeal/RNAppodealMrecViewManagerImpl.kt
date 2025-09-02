@@ -66,6 +66,15 @@ internal class RNAppodealMrecViewManagerImpl(
         )
     }
 
+    fun getExportedCustomDirectEventTypeConstants(): Map<String?, Any?>? {
+        return mapOf(
+            MrecEvents.ON_AD_LOADED to mapOf("registrationName" to MrecEvents.ON_AD_LOADED),
+            MrecEvents.ON_AD_FAILED_TO_LOAD to mapOf("registrationName" to MrecEvents.ON_AD_FAILED_TO_LOAD),
+            MrecEvents.ON_AD_CLICKED to mapOf("registrationName" to MrecEvents.ON_AD_CLICKED),
+            MrecEvents.ON_AD_EXPIRED to mapOf("registrationName" to MrecEvents.ON_AD_EXPIRED)
+        )
+    }
+
     private fun getAppodealMrecView(context: Context): MrecView {
         return appodealMrecViewRef.get() ?: run {
             val newMrecView = Appodeal.getMrecView(context.applicationContext)

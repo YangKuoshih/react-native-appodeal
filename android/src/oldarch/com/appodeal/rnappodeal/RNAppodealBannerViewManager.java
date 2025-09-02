@@ -6,8 +6,10 @@ import androidx.annotation.Nullable;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
+import com.appodeal.rnappodeal.constants.BannerEvents;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public class RNAppodealBannerViewManager extends SimpleViewManager<RCTAppodealBannerView> {
 
@@ -39,6 +41,12 @@ public class RNAppodealBannerViewManager extends SimpleViewManager<RCTAppodealBa
     @Override
     public Map<String, Object> getExportedViewConstants() {
         return bannerViewManagerImpl.getExportedViewConstants();
+    }
+
+    @Nullable
+    @Override
+    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
+        return bannerViewManagerImpl.getExportedCustomDirectEventTypeConstants();
     }
 
     @ReactProp(name = "adSize")

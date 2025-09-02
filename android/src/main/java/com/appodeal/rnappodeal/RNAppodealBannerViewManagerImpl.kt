@@ -69,6 +69,15 @@ internal class RNAppodealBannerViewManagerImpl(
         )
     }
 
+    fun getExportedCustomDirectEventTypeConstants(): Map<String?, Any?>? {
+        return mapOf(
+            BannerEvents.ON_AD_LOADED to mapOf("registrationName" to BannerEvents.ON_AD_LOADED),
+            BannerEvents.ON_AD_FAILED_TO_LOAD to mapOf("registrationName" to BannerEvents.ON_AD_FAILED_TO_LOAD),
+            BannerEvents.ON_AD_CLICKED to mapOf("registrationName" to BannerEvents.ON_AD_CLICKED),
+            BannerEvents.ON_AD_EXPIRED to mapOf("registrationName" to BannerEvents.ON_AD_EXPIRED)
+        )
+    }
+
     private fun getAppodealBannerView(context: Context): BannerView {
         return appodealBannerViewRef.get() ?: run {
             val newBannerView = Appodeal.getBannerView(context.applicationContext)
