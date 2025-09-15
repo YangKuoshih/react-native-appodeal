@@ -3,6 +3,7 @@ package com.appodeal.rnappodeal
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
@@ -264,8 +265,12 @@ internal class RNAEventDispatcher(
 
         try {
             val prefixedEventName = EVENT_PREFIX + eventName
+            // Create a copy to avoid ObjectAlreadyConsumedException
+            val safeCopy = payload?.let {
+                Arguments.createMap().apply { merge(it) }
+            }
             reactContext.getJSModule(RCTDeviceEventEmitter::class.java)
-                .emit(prefixedEventName, payload)
+                .emit(prefixedEventName, safeCopy)
         } catch (e: Exception) {
             Log.e(TAG, "Error sending event: $eventName", e)
         }
