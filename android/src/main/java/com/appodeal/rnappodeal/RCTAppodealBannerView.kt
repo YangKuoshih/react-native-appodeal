@@ -12,6 +12,7 @@ import com.appodeal.ads.Appodeal
 import com.appodeal.ads.BannerView
 import com.appodeal.rnappodeal.callbacks.RNAppodealEventHandler
 import com.appodeal.rnappodeal.constants.BannerEvents
+import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.UIManagerHelper
@@ -128,7 +129,13 @@ class RCTAppodealBannerView(context: Context) : ReactViewGroup(context), RNAppod
         private val payload: WritableMap?
     ) : Event<OnViewEvent>(surfaceId, viewId) {
         override fun getEventName(): String = eventName
-        override fun getEventData(): WritableMap? = payload
+        override fun getEventData(): WritableMap? {
+            // Create a copy to avoid ObjectAlreadyConsumedException
+            if (payload == null) return null
+            val copy = Arguments.createMap()
+            copy.merge(payload)
+            return copy
+        }
     }
 
     private val reactContext: ReactContext

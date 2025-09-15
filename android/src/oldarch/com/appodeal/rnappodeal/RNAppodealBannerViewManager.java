@@ -37,8 +37,8 @@ public class RNAppodealBannerViewManager extends SimpleViewManager<RCTAppodealBa
 
     @Nullable
     @Override
-    public Map<String, Object> getExportedViewConstants() {
-        return bannerViewManagerImpl.getExportedViewConstants();
+    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
+        return bannerViewManagerImpl.getExportedCustomDirectEventTypeConstants();
     }
 
     @ReactProp(name = "adSize")

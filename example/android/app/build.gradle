@@ -111,13 +111,8 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
-    // Appodeal SDK 3.8.1.0 Example w/o services
-    implementation ('com.appodeal.ads:sdk:3.8.1.0') {
-        exclude group: 'com.appodeal.ads.sdk.services', module: 'adjust'
-        exclude group: 'com.appodeal.ads.sdk.services', module: 'appsflyer'
-        exclude group: 'com.appodeal.ads.sdk.services', module: 'firebase'
-        exclude group: 'com.appodeal.ads.sdk.services', module: 'facebook_analytics'
-    }
+    // Appodeal SDK 3.10.0.0
+    implementation ('com.appodeal.ads:sdk:3.10.0.0')
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

@@ -57,7 +57,7 @@ internal class RNAppodealMrecViewManagerImpl(
         }
     }
 
-    fun getExportedViewConstants(): Map<String?, Any?>? {
+    fun getExportedCustomDirectEventTypeConstants(): Map<String?, Any?>? {
         return mapOf(
             MrecEvents.ON_AD_LOADED to mapOf("registrationName" to MrecEvents.ON_AD_LOADED),
             MrecEvents.ON_AD_FAILED_TO_LOAD to mapOf("registrationName" to MrecEvents.ON_AD_FAILED_TO_LOAD),

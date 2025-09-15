@@ -80,21 +80,11 @@ RCT_EXPORT_METHOD(show:(double)showType
   rootViewController:RCTPresentedViewController()];
 }
 
-RCT_EXPORT_METHOD(isLoaded:(double)showType
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject) {
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(isLoaded:(double)showType) {
     BOOL isLoaded = [Appodeal isReadyForShowWithStyle:AppodealShowStyleFromRNAAdType(showType)];
-    resolve(@(isLoaded));
+    return @(isLoaded);
 }
 
-RCT_EXPORT_METHOD(canShow:(double)showType
-                  placement:(NSString *)placement
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject) {
-    BOOL canShow = [Appodeal canShow:AppodealAdTypeFromRNAAdType(showType)
-                        forPlacement:placement];
-    resolve(@(canShow));
-}
 
 RCT_EXPORT_METHOD(cache:(double)adType) {
     [Appodeal cacheAd:AppodealAdTypeFromRNAAdType(adType)];
