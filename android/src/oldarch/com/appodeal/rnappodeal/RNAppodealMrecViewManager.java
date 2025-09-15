@@ -37,8 +37,8 @@ public class RNAppodealMrecViewManager extends SimpleViewManager<RCTAppodealMrec
 
     @Nullable
     @Override
-    public Map<String, Object> getExportedViewConstants() {
-        return mrecViewManagerImpl.getExportedViewConstants();
+    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
+        return mrecViewManagerImpl.getExportedCustomDirectEventTypeConstants();
     }
 
     @ReactProp(name = "placement")
