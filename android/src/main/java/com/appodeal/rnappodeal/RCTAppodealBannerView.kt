@@ -12,6 +12,7 @@ import com.appodeal.ads.Appodeal
 import com.appodeal.ads.BannerView
 import com.appodeal.rnappodeal.callbacks.RNAppodealEventHandler
 import com.appodeal.rnappodeal.constants.BannerEvents
+import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReactContext
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.uimanager.UIManagerHelper
@@ -118,7 +119,12 @@ class RCTAppodealBannerView(context: Context) : ReactViewGroup(context), RNAppod
     ) {
         val dispatcher: EventDispatcher? =
             UIManagerHelper.getEventDispatcherForReactTag(reactContext, viewId)
-        dispatcher?.dispatchEvent(OnViewEvent(surfaceId, viewId, eventName, params))
+        
+        val safeParams: WritableMap? = params?.let { original ->
+            Arguments.createMap().apply { merge(original) }
+        }
+        
+        dispatcher?.dispatchEvent(OnViewEvent(surfaceId, viewId, eventName, safeParams))
     }
 
     private class OnViewEvent(

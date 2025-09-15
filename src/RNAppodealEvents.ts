@@ -72,3 +72,19 @@ export namespace AppodealRewardedEvents {
   /** Fired when rewarded video ad is clicked */
   export const CLICKED = 'onRewardedVideoClicked';
 }
+
+/**
+ * Mrec ad events
+ */
+export namespace AppodealMrecEvents {
+  /** Fired when MREC ad is loaded successfully */
+  export const LOADED = 'onMrecLoaded';
+  /** Fired when MREC ad fails to load */
+  export const FAILED_TO_LOAD = 'onMrecFailedToLoad';
+  /** Fired when MREC ad is shown */
+  export const SHOWN = 'onMrecShown';
+  /** Fired when MREC ad is clicked */
+  export const CLICKED = 'onMrecClicked';
+  /** Fired when MREC ad expires */
+  export const EXPIRED = 'onMrecExpired';
+}
