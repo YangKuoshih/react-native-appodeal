@@ -2,7 +2,7 @@
 
 Official Appodeal React Native Plugin for your React Native application.
 
-## Appodeal SDK 3.8.1
+## Appodeal SDK 3.10.0
 
 - **Google CMP and TCF v2 Support**
   - To enhance the relevance of ads for your users and comply with regulations like GDPR and CCPA,
@@ -37,11 +37,11 @@ Official Appodeal React Native Plugin for your React Native application.
 ## Migration Guide
 
 > [!IMPORTANT]
-> **Migrating from version 3.5.0 to 3.8.1** This is a major update with breaking changes.
+> **Migrating from version 3.5.0 to 3.10.0** This is a major update with breaking changes.
 > Please read our [Migration Guide](MIGRATION_GUIDE.md) carefully before updating.
 
-**Key Changes in 3.8.1:**
-- Updated to Appodeal SDK 3.8.1  
+**Key Changes in 3.10.0:**
+- Updated to Appodeal SDK 3.10.0  
 - Migrated to React Native Turbo Modules  
 - New Architecture support (Fabric + TurboModules)  
 - Updated TypeScript definitions  
@@ -88,9 +88,9 @@ yarn add react-native-appodeal
 ### iOS
 
 > [!IMPORTANT]
-> - iOS 13.0 or higher. You still can integrate Appodeal SDK into a project with a lower value of minimum iOS version. However, on devices that don't support iOS 13.0+ our SDK will just be disabled.
+> - iOS 13.0 and above for Firebase, IronSource, LevelPlay, DTExchange, Unity, and Yandex. iOS 12.4 for MyTarget. In all other cases, iOS 12.0 is sufficient. You still can integrate Appodeal SDK into a project with a lower value of minimum iOS version. However, on devices that don't support the required iOS version our SDK will just be disabled.
 > - Appodeal SDK is compatible with both ARC and non-ARC projects.
-> - Xcode 16.0 or higher.
+> - Xcode 16.1 or higher.
 
 1. Go to `ios/` folder and open *Podfile*
 2. Add Appodeal adapters. Add pods into `./ios/Podfile`:
@@ -105,88 +105,93 @@ platform :ios, '13.0'
 use_frameworks!
 
 def appodeal
-   pod 'Appodeal', '3.8.1'
-   pod 'APDAmazonAdapter', '3.8.1.0'
-   pod 'APDAppLovinAdapter', '3.8.1.0'
-   pod 'APDAppLovinMAXAdapter', '3.8.1.0'
-   pod 'APDBidMachineAdapter', '3.8.1.0'
-   pod 'APDBidonAdapter', '3.8.1.0'
-   pod 'APDBigoAdsAdapter', '3.8.1.0'
-   pod 'APDDTExchangeAdapter', '3.8.1.0'
-   pod 'APDGoogleAdMobAdapter', '3.8.1.0'
-   pod 'APDIABAdapter', '3.8.1.0'
-   pod 'APDInMobiAdapter', '3.8.1.0'
-   pod 'APDIronSourceAdapter', '3.8.1.0'
-   pod 'APDLevelPlayAdapter', '3.8.1.0'
-   pod 'APDMetaAudienceNetworkAdapter', '3.8.1.0'
-   pod 'APDMintegralAdapter', '3.8.1.0'
-   pod 'APDMyTargetAdapter', '3.8.1.0'
-   pod 'APDPangleAdapter', '3.8.1.0'
-   pod 'APDSentryAdapter', '3.8.1.0'
-   pod 'APDSmaatoAdapter', '3.8.1.0'
-   pod 'APDUnityAdapter', '3.8.1.0'
-   pod 'APDVungleAdapter', '3.8.1.0'
-   pod 'APDYandexAdapter', '3.8.1.0'
-   pod 'AppLovinMediationAmazonAdMarketplaceAdapter', '5.2.0.0'
-   pod 'AppLovinMediationBidMachineAdapter', '3.3.0.0.2'
-   pod 'AppLovinMediationBidonAdapter', '0.9.0.0'
-   pod 'AppLovinMediationBigoAdsAdapter', '4.7.0.2'
-   pod 'AppLovinMediationByteDanceAdapter', '7.1.1.1.0'
-   pod 'AppLovinMediationFacebookAdapter', '6.17.1.0'
-   pod 'AppLovinMediationFyberAdapter', '8.3.7.0'
-   pod 'AppLovinMediationGoogleAdManagerAdapter', '12.4.0.1'
-   pod 'AppLovinMediationGoogleAdapter', '12.4.0.1'
-   pod 'AppLovinMediationInMobiAdapter', '10.8.3.1'
+   pod 'Appodeal', '3.10.0'
+   pod 'APDAmazonAdapter', '3.10.0.0'
+   pod 'APDAppLovinAdapter', '3.10.0.0'
+   pod 'APDAppLovinMAXAdapter', '3.10.0.0'
+   pod 'APDBidMachineAdapter', '3.10.0.0'
+   pod 'APDBidonAdapter', '3.10.0.0'
+   pod 'APDBigoAdsAdapter', '3.10.0.0'
+   pod 'APDDTExchangeAdapter', '3.10.0.0'
+   pod 'APDGoogleAdMobAdapter', '3.10.0.0'
+   pod 'APDIABAdapter', '3.10.0.0'
+   pod 'APDInMobiAdapter', '3.10.0.0'
+   pod 'APDIronSourceAdapter', '3.10.0.0'
+   pod 'APDLevelPlayAdapter', '3.10.0.0'
+   pod 'APDMetaAudienceNetworkAdapter', '3.10.0.0'
+   pod 'APDMintegralAdapter', '3.10.0.0'
+   pod 'APDMyTargetAdapter', '3.10.0.0'
+   pod 'APDPangleAdapter', '3.10.0.0'
+   pod 'APDSentryAdapter', '3.10.0.0'
+   pod 'APDSmaatoAdapter', '3.10.0.0'
+   pod 'APDUnityAdapter', '3.10.0.0'
+   pod 'APDVungleAdapter', '3.10.0.0'
+   pod 'APDYandexAdapter', '3.10.0.0'
+   pod 'AppLovinMediationAmazonAdMarketplaceAdapter', '5.3.0.0'
+   pod 'AppLovinMediationBidMachineAdapter', '3.4.0.0.0'
+   pod 'AppLovinMediationBidonAdapter', '0.11.0.0'
+   pod 'AppLovinMediationBigoAdsAdapter', '4.9.0.0'
+   pod 'AppLovinMediationByteDanceAdapter', '7.4.1.1.0'
+   pod 'AppLovinMediationChartboostAdapter', '9.9.2.1'
+   pod 'AppLovinMediationFacebookAdapter', '6.20.1.0'
+   pod 'AppLovinMediationFyberAdapter', '8.3.8.0'
+   pod 'AppLovinMediationGoogleAdManagerAdapter', '12.8.0.0'
+   pod 'AppLovinMediationGoogleAdapter', '12.8.0.0'
+   pod 'AppLovinMediationInMobiAdapter', '10.8.6.0'
    pod 'AppLovinMediationIronSourceAdapter', '8.10.0.0.0'
-   pod 'AppLovinMediationMintegralAdapter', '7.7.7.0.0'
-   pod 'AppLovinMediationMobileFuseAdapter', '1.9.0.0'
-   pod 'AppLovinMediationMolocoAdapter', '3.9.1.1'
-   pod 'AppLovinMediationMyTargetAdapter', '5.32.1.0'
+   pod 'AppLovinMediationMintegralAdapter', '7.7.9.0.0'
+   pod 'AppLovinMediationMobileFuseAdapter', '1.9.2.1'
+   pod 'AppLovinMediationMolocoAdapter', '3.12.0.0'
+   pod 'AppLovinMediationMyTargetAdapter', '5.33.0.0'
    pod 'AppLovinMediationOguryPresageAdapter', '5.0.2.0'
-   pod 'AppLovinMediationPubMaticAdapter', '4.7.0.2'
+   pod 'AppLovinMediationPubMaticAdapter', '4.8.0.0'
    pod 'AppLovinMediationSmaatoAdapter', '22.9.3.1'
-   pod 'AppLovinMediationUnityAdsAdapter', '4.14.2.0'
-   pod 'AppLovinMediationVerveAdapter', '3.2.0.0'
-   pod 'AppLovinMediationVungleAdapter', '7.5.1.4'
-   pod 'AppLovinMediationYandexAdapter', '5.2.1.0'
-   pod 'BidMachineAmazonAdapter', '3.3.0.0'
-   pod 'BidMachineMetaAudienceAdapter', '3.3.0.0'
-   pod 'BidMachineMintegralAdapter', '3.3.0.0'
-   pod 'BidMachineMyTargetAdapter', '3.3.0.1'
-   pod 'BidMachinePangleAdapter', '3.3.0.0'
-   pod 'BidMachineVungleAdapter', '3.3.0.3'
-   pod 'BidonAdapterAmazon', '0.9.0.0'
-   pod 'BidonAdapterBidMachine', '0.9.0.0'
-   pod 'BidonAdapterBigoAds', '0.9.0.0'
-   pod 'BidonAdapterDTExchange', '0.9.0.0'
-   pod 'BidonAdapterInMobi', '0.9.0.0'
-   pod 'BidonAdapterIronSource', '0.9.0.0'
-   pod 'BidonAdapterMetaAudienceNetwork', '0.9.0.0'
-   pod 'BidonAdapterMintegral', '0.9.0.0'
-   pod 'BidonAdapterMobileFuse', '0.9.0.0'
-   pod 'BidonAdapterMyTarget', '0.9.0.0'
-   pod 'BidonAdapterUnityAds', '0.9.0.0'
-   pod 'BidonAdapterVungle', '0.9.0.0'
-   pod 'BidonAdapterYandex', '0.9.0.0'
-   pod 'ISBidonCustomAdapter', '0.9.0.0'
-   pod 'IronSourceAPSAdapter', '4.3.20.1'
-   pod 'IronSourceAdMobAdapter', '4.3.65.0'
-   pod 'IronSourceAppLovinAdapter', '4.3.54.0'
-   pod 'IronSourceBidMachineAdapter', '4.3.17.1'
-   pod 'IronSourceBigoAdapter', '4.3.5.0'
-   pod 'IronSourceFacebookAdapter', '4.3.49.0'
-   pod 'IronSourceFyberAdapter', '4.3.43.1'
-   pod 'IronSourceInMobiAdapter', '4.3.29.1'
-   pod 'IronSourceMintegralAdapter', '4.3.34.0'
-   pod 'IronSourceMobileFuseAdapter', '4.3.6.0'
-   pod 'IronSourceMolocoAdapter', '4.3.19.0'
-   pod 'IronSourceMyTargetAdapter', '4.3.5.0'
+   pod 'AppLovinMediationUnityAdsAdapter', '4.16.0.0'
+   pod 'AppLovinMediationVerveAdapter', '3.6.0.0'
+   pod 'AppLovinMediationVungleAdapter', '7.5.2.0'
+   pod 'AppLovinMediationYandexAdapter', '7.14.1.0'
+   pod 'BidMachineAmazonAdapter', '3.4.0.0'
+   pod 'BidMachineIronSourceCustomAdapter', '3.4.0.0'
+   pod 'BidMachineMetaAudienceAdapter', '3.4.0.0'
+   pod 'BidMachineMintegralAdapter', '3.4.0.0'
+   pod 'BidMachineMyTargetAdapter', '3.4.0.0'
+   pod 'BidMachinePangleAdapter', '3.4.0.0'
+   pod 'BidMachineVungleAdapter', '3.4.0.0'
+   pod 'BidonAdapterAmazon', '0.11.0.0'
+   pod 'BidonAdapterBidMachine', '0.11.0.0'
+   pod 'BidonAdapterBigoAds', '0.11.0.0'
+   pod 'BidonAdapterChartboost', '0.11.0.0'
+   pod 'BidonAdapterDTExchange', '0.11.0.0'
+   pod 'BidonAdapterInMobi', '0.11.0.0'
+   pod 'BidonAdapterIronSource', '0.11.0.0'
+   pod 'BidonAdapterMetaAudienceNetwork', '0.11.0.0'
+   pod 'BidonAdapterMintegral', '0.11.0.0'
+   pod 'BidonAdapterMobileFuse', '0.11.0.0'
+   pod 'BidonAdapterMoloco', '0.11.0.0'
+   pod 'BidonAdapterMyTarget', '0.11.0.0'
+   pod 'BidonAdapterUnityAds', '0.11.0.0'
+   pod 'BidonAdapterVungle', '0.11.0.0'
+   pod 'BidonAdapterYandex', '0.11.0.0'
+   pod 'ISBidonCustomAdapter', '0.11.0.0'
+   pod 'IronSourceAPSAdapter', '4.3.21.0'
+   pod 'IronSourceAdMobAdapter', '4.3.69.0'
+   pod 'IronSourceAppLovinAdapter', '4.3.56.0'
+   pod 'IronSourceBidMachineAdapter', '4.3.20.0'
+   pod 'IronSourceBigoAdapter', '4.3.8.0'
+   pod 'IronSourceFacebookAdapter', '4.3.51.0'
+   pod 'IronSourceFyberAdapter', '4.3.44.0'
+   pod 'IronSourceInMobiAdapter', '4.3.30.0'
+   pod 'IronSourceMintegralAdapter', '4.3.37.0'
+   pod 'IronSourceMobileFuseAdapter', '4.3.8.1'
+   pod 'IronSourceMolocoAdapter', '4.3.22.0'
+   pod 'IronSourceMyTargetAdapter', '4.3.6.0'
    pod 'IronSourceOguryAdapter', '4.3.3.1'
-   pod 'IronSourcePangleAdapter', '4.3.44.0'
+   pod 'IronSourcePangleAdapter', '4.3.51.0'
    pod 'IronSourceSmaatoAdapter', '4.3.17.1'
-   pod 'IronSourceUnityAdsAdapter', '4.3.51.0'
-   pod 'IronSourceVerveAdapter', '4.3.5.0'
-   pod 'IronSourceVungleAdapter', '4.3.45.1'
+   pod 'IronSourceUnityAdsAdapter', '4.3.54.0'
+   pod 'IronSourceVerveAdapter', '4.3.6.1'
+   pod 'IronSourceVungleAdapter', '4.3.46.0'
+   pod 'IronSourceYandexAdapter', '4.3.21.0'
 end
 
 target 'YourAppName' do
@@ -282,7 +287,7 @@ Add dependencies into `android/app/build.gradle`
 ``` groovy
 dependencies {
     // ... other project dependencies
-    implementation ('com.appodeal.ads:sdk:3.8.1.0') {
+    implementation ('com.appodeal.ads:sdk:3.10.0.0') {
         exclude group: 'com.appodeal.ads.sdk.services', module: 'adjust'
         exclude group: 'com.appodeal.ads.sdk.services', module: 'appsflyer'
         exclude group: 'com.appodeal.ads.sdk.services', module: 'firebase'
@@ -349,7 +354,7 @@ allprojects {
   dependencies {
       ...
       // ... other project dependencies
-      implementation('com.appodeal.ads:sdk:3.8.1.0') {
+      implementation('com.appodeal.ads:sdk:3.10.0.0') {
           // ad networks
           exclude group: "com.appodeal.ads.sdk.networks", module: "admob"
           exclude group: "com.applovin.mediation", module: "google-adapter"
@@ -386,7 +391,7 @@ Add dependencies into `android/app/build.gradle`
 ```groovy
 dependencies {
     // ... other project dependencies
-    implementation 'com.appodeal.ads.sdk.services:adjust:3.8.1.0'
+    implementation 'com.appodeal.ads.sdk.services:adjust:3.10.0.0'
 }
 ```
 
@@ -395,7 +400,7 @@ Add dependencies into _Podfile_
 ```ruby
 def appodeal
   // ... other project pods
-  pod 'APDAdjustAdapter', '3.8.1.0'
+  pod 'APDAdjustAdapter', '3.10.0.0'
 end
 ```
 
@@ -406,7 +411,7 @@ Add dependencies into `android/app/build.gradle`
 ```groovy
 dependencies {
     // ... other project dependencies
-  implementation 'com.appodeal.ads.sdk.services:appsflyer:3.8.1.0'
+  implementation 'com.appodeal.ads.sdk.services:appsflyer:3.10.0.0'
 }
 ```
 
@@ -415,7 +420,7 @@ Add dependencies into _Podfile_
 ```ruby
 def appodeal
   // ... other project pods
-  pod 'APDAppsFlyerAdapter', '3.8.1.0'
+  pod 'APDAppsFlyerAdapter', '3.10.0.0'
 end
 ```
 
@@ -426,7 +431,7 @@ Add dependencies into `android/app/build.gradle`
 ```groovy
 dependencies {
     // ... other project dependencies
-    implementation 'com.appodeal.ads.sdk.services:firebase:3.8.1.0'
+    implementation 'com.appodeal.ads.sdk.services:firebase:3.10.0.0'
 }
 ```
 
@@ -435,7 +440,7 @@ Add dependencies into _Podfile_
 ```ruby
 def appodeal
   // ... other project pods
-  pod 'APDFirebaseAdapter', '3.8.1.0'
+  pod 'APDFirebaseAdapter', '3.10.0.0'
 end
 ```
 
@@ -446,7 +451,7 @@ Add dependencies into `android/app/build.gradle`
 ```groovy
 dependencies {
     // ... other project dependencies
-    implementation 'com.appodeal.ads.sdk.services:facebook_analytics:3.8.1.0'
+    implementation 'com.appodeal.ads.sdk.services:facebook_analytics:3.10.0.0'
 }
 ```
 
@@ -455,7 +460,7 @@ Add dependencies into _Podfile_
 ```ruby
 def appodeal
   // ... other project pods
-  pod 'APDFacebookAdapter', '3.8.1.0'
+  pod 'APDFacebookAdapter', '3.10.0.0'
 end
 ```
 

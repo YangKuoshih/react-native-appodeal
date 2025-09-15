@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.10.0
+
+### Fixes
+
+- **iOS Old Architecture Consistency**: Fixed inconsistent method definitions in iOS Old Architecture where `isLoaded` and `canShow` methods had both Promise/callback and synchronous implementations, causing conflicts. Unified to use only synchronous `RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD` implementations for consistency with TypeScript definitions and Android platform ([#148](https://github.com/appodeal/react-native-appodeal/issues/148))
+- **Architecture Guards**: Added `#ifdef RCT_NEW_ARCH_ENABLED` guards to ComponentView files (`RNAppodealBannerViewComponentView`, `RNAppodealMrecViewComponentView`) to prevent compilation errors when building with Old Architecture ([#148](https://github.com/appodeal/react-native-appodeal/issues/148))
+- **MREC and Banner Ad Events**: Fixed `ObjectAlreadyConsumedException` for ad view events in both MREC and Banner components by implementing proper event handling through `getExportedCustomDirectEventTypeConstants` method ([#148](https://github.com/appodeal/react-native-appodeal/issues/148))
+- **Event System**: Fixed ad view events registration in both Old and New Architecture by properly implementing event constants export ([#148](https://github.com/appodeal/react-native-appodeal/issues/148))
+
+### Android Features
+- Updated Appodeal iOS SDK to [3.10.0](https://docs.appodeal.com/ios/get-started)
+
+### iOS Features
+- Updated Appodeal Android SDK to [3.10.0](https://docs.appodeal.com/android/get-started)
+
 ## 3.8.1
 
 - **🚀 Turbo Modules Implementation**: Migrated to React Native's Turbo modules architecture for better performance, type safety, and future compatibility
