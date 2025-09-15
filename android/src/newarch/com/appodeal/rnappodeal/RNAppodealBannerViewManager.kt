@@ -31,10 +31,6 @@ class RNAppodealBannerViewManager() :
         return bannerViewManagerImpl.onDropViewInstance(view)
     }
 
-    override fun getExportedViewConstants(): Map<String?, Any?>? {
-        return bannerViewManagerImpl.getExportedViewConstants()
-    }
-
     override fun setAdSize(view: RCTAppodealBannerView, value: String?) {
         value?.let { view.adSize = it }
     }

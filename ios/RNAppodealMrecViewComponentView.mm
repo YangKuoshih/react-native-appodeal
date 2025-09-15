@@ -1,4 +1,5 @@
 #ifdef RCT_NEW_ARCH_ENABLED
+
 #import "RNAppodealMrecViewComponentView.h"
 #import "RNAppodealBannerView.h"
 
@@ -90,4 +91,5 @@ using namespace facebook::react;
 Class<RCTComponentViewProtocol> RNAppodealMrecViewCls(void) {
     return RNAppodealMrecViewComponentView.class;
 }
-#endif
+
+#endif // RCT_NEW_ARCH_ENABLED

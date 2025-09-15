@@ -125,7 +125,13 @@ class RCTAppodealMrecView(context: Context) : ReactViewGroup(context), RNAppodea
         private val payload: WritableMap?
     ) : Event<OnViewEvent>(surfaceId, viewId) {
         override fun getEventName(): String = eventName
-        override fun getEventData(): WritableMap? = payload
+        override fun getEventData(): WritableMap? {
+            // Create a copy to avoid ObjectAlreadyConsumedException
+            if (payload == null) return null
+            val copy = Arguments.createMap()
+            copy.merge(payload)
+            return copy
+        }
     }
 
     private val reactContext: ReactContext

@@ -60,7 +60,7 @@ internal class RNAppodealBannerViewManagerImpl(
         }
     }
 
-    fun getExportedViewConstants(): Map<String?, Any?>? {
+    fun getExportedCustomDirectEventTypeConstants(): Map<String?, Any?>? {
         return mapOf(
             BannerEvents.ON_AD_LOADED to mapOf("registrationName" to BannerEvents.ON_AD_LOADED),
             BannerEvents.ON_AD_FAILED_TO_LOAD to mapOf("registrationName" to BannerEvents.ON_AD_FAILED_TO_LOAD),

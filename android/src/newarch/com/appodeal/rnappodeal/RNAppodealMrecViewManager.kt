@@ -31,10 +31,6 @@ class RNAppodealMrecViewManager() :
         return mrecViewManagerImpl.onDropViewInstance(view)
     }
 
-    override fun getExportedViewConstants(): Map<String?, Any?>? {
-        return mrecViewManagerImpl.getExportedViewConstants()
-    }
-
     override fun setPlacement(view: RCTAppodealMrecView, value: String?) {
         value?.let { view.placement = it }
     }

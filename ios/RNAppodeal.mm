@@ -85,6 +85,7 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(isLoaded:(double)showType) {
     return @(isLoaded);
 }
 
+
 RCT_EXPORT_METHOD(cache:(double)adType) {
     [Appodeal cacheAd:AppodealAdTypeFromRNAAdType(adType)];
 }

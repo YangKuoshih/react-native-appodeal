@@ -265,13 +265,12 @@ internal class RNAEventDispatcher(
 
         try {
             val prefixedEventName = EVENT_PREFIX + eventName
-            
-            val safePayload: WritableMap? = payload?.let { original ->
-                Arguments.createMap().apply { merge(original) }
+            // Create a copy to avoid ObjectAlreadyConsumedException
+            val safeCopy = payload?.let {
+                Arguments.createMap().apply { merge(it) }
             }
-            
             reactContext.getJSModule(RCTDeviceEventEmitter::class.java)
-                .emit(prefixedEventName, safePayload)
+                .emit(prefixedEventName, safeCopy)
         } catch (e: Exception) {
             Log.e(TAG, "Error sending event: $eventName", e)
         }
