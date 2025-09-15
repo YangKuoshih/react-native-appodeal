@@ -85,9 +85,9 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 dependencies {
     implementation "com.facebook.react:react-android"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    // Appodeal SDK 3.8.1.0
-    implementation "com.appodeal.ads.sdk:core:3.8.1"
-    implementation "com.appodeal.ads.sdk.networks:iab:3.8.1.0"
+    // Appodeal SDK 3.10.0.0
+    implementation "com.appodeal.ads.sdk:core:3.10.0"
+    implementation "com.appodeal.ads.sdk.networks:iab:3.10.0.0"
 }
 
 if (isNewArchitectureEnabled()) {
