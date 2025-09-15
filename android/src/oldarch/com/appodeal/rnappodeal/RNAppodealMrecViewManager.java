@@ -6,10 +6,8 @@ import androidx.annotation.Nullable;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.appodeal.rnappodeal.constants.MrecEvents;
 
 import java.util.Map;
-import java.util.HashMap;
 
 public class RNAppodealMrecViewManager extends SimpleViewManager<RCTAppodealMrecView> {
 
@@ -35,12 +33,6 @@ public class RNAppodealMrecViewManager extends SimpleViewManager<RCTAppodealMrec
     public void onDropViewInstance(@NonNull RCTAppodealMrecView view) {
         super.onDropViewInstance(view);
         mrecViewManagerImpl.onDropViewInstance(view);
-    }
-
-    @Nullable
-    @Override
-    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
-        return mrecViewManagerImpl.getExportedCustomDirectEventTypeConstants();
     }
 
     @Nullable

@@ -6,10 +6,8 @@ import androidx.annotation.Nullable;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.appodeal.rnappodeal.constants.BannerEvents;
 
 import java.util.Map;
-import java.util.HashMap;
 
 public class RNAppodealBannerViewManager extends SimpleViewManager<RCTAppodealBannerView> {
 
@@ -35,12 +33,6 @@ public class RNAppodealBannerViewManager extends SimpleViewManager<RCTAppodealBa
     public void onDropViewInstance(@NonNull RCTAppodealBannerView view) {
         super.onDropViewInstance(view);
         bannerViewManagerImpl.onDropViewInstance(view);
-    }
-
-    @Nullable
-    @Override
-    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
-        return bannerViewManagerImpl.getExportedCustomDirectEventTypeConstants();
     }
 
     @Nullable

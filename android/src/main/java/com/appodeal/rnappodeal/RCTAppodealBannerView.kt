@@ -119,12 +119,7 @@ class RCTAppodealBannerView(context: Context) : ReactViewGroup(context), RNAppod
     ) {
         val dispatcher: EventDispatcher? =
             UIManagerHelper.getEventDispatcherForReactTag(reactContext, viewId)
-        
-        val safeParams: WritableMap? = params?.let { original ->
-            Arguments.createMap().apply { merge(original) }
-        }
-        
-        dispatcher?.dispatchEvent(OnViewEvent(surfaceId, viewId, eventName, safeParams))
+        dispatcher?.dispatchEvent(OnViewEvent(surfaceId, viewId, eventName, params))
     }
 
     private class OnViewEvent(
