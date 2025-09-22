@@ -240,7 +240,7 @@ describe('Appodeal SDK', () => {
     });
 
     it('should return correct plugin version', () => {
-      expect(Appodeal.getVersion()).toBe('3.10.0');
+      expect(Appodeal.getVersion()).toBe('3.10.1');
     });
 
     it('should handle consent methods correctly', async () => {
@@ -626,7 +626,7 @@ describe('Appodeal SDK', () => {
       expect(mockNativeAppodeal.initialize).toHaveBeenCalledWith(
         'test-key',
         combinedTypes,
-        '3.10.0'
+        '3.10.1'
       );
       expect(mockNativeAppodeal.cache).toHaveBeenCalledWith(combinedTypes);
       expect(mockNativeAppodeal.setAutoCache).toHaveBeenCalledWith(

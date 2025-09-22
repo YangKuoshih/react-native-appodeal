@@ -2,7 +2,7 @@
 
 Official Appodeal React Native Plugin for your React Native application.
 
-## Appodeal SDK 3.10.0
+## Appodeal SDK 3.10.1
 
 - **Google CMP and TCF v2 Support**
   - To enhance the relevance of ads for your users and comply with regulations like GDPR and CCPA,
@@ -37,10 +37,10 @@ Official Appodeal React Native Plugin for your React Native application.
 ## Migration Guide
 
 > [!IMPORTANT]
-> **Migrating from version 3.5.0 to 3.10.0** This is a major update with breaking changes.
+> **Migrating from version 3.5.0 to 3.10.1** This is a major update with breaking changes.
 > Please read our [Migration Guide](MIGRATION_GUIDE.md) carefully before updating.
 
-**Key Changes in 3.10.0:**
+**Key Changes in 3.10.1:**
 - Updated to Appodeal SDK 3.10.0  
 - Migrated to React Native Turbo Modules  
 - New Architecture support (Fabric + TurboModules)  
