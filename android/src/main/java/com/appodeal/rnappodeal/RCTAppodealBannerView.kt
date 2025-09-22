@@ -125,10 +125,10 @@ class RCTAppodealBannerView(context: Context) : ReactViewGroup(context), RNAppod
     private class OnViewEvent(
         surfaceId: Int,
         viewId: Int,
-        private val eventName: String,
+        private val eventNameParam: String,
         private val payload: WritableMap?
     ) : Event<OnViewEvent>(surfaceId, viewId) {
-        override fun getEventName(): String = eventName
+        override fun getEventName(): String = eventNameParam
         override fun getEventData(): WritableMap? {
             // Create a copy to avoid ObjectAlreadyConsumedException
             if (payload == null) return null

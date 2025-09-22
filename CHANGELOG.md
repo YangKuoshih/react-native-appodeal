@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.10.1
+
+### Features
+
+- **React Native 0.81.4 Support**: Added compatibility with React Native 0.81.4 by updating dependencies and resolving naming conflicts
+
+### Fixes
+
+- **Android Kotlin Naming Conflicts**: Fixed parameter naming conflicts in `RCTAppodealBannerView` and `RCTAppodealMrecView` by renaming `eventName` parameter to `eventNameParam` to avoid collision with `getEventName()` method ([#151](https://github.com/appodeal/react-native-appodeal/issues/151))
+
+
 ## 3.10.0
 
 ### Fixes
