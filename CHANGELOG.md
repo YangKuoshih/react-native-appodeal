@@ -20,10 +20,10 @@
 - **MREC and Banner Ad Events**: Fixed `ObjectAlreadyConsumedException` for ad view events in both MREC and Banner components by implementing proper event handling through `getExportedCustomDirectEventTypeConstants` method ([#148](https://github.com/appodeal/react-native-appodeal/issues/148))
 - **Event System**: Fixed ad view events registration in both Old and New Architecture by properly implementing event constants export ([#148](https://github.com/appodeal/react-native-appodeal/issues/148))
 
-### Android Features
+### iOS Features 
 - Updated Appodeal iOS SDK to [3.10.0](https://docs.appodeal.com/ios/get-started)
 
-### iOS Features
+### Android Features
 - Updated Appodeal Android SDK to [3.10.0](https://docs.appodeal.com/android/get-started)
 
 ## 3.8.1
