@@ -1,10 +1,4 @@
-import {
-  Platform,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Appodeal, {
   AppodealAdType,
   AppodealLogLevel,
@@ -12,34 +6,69 @@ import Appodeal, {
 } from 'react-native-appodeal';
 import type { BaseScreenProps } from '../App';
 import { commonStyles as styles } from '../styles/common';
+import { runAppodealTest } from '../testAppodealConnection';
+import { getAppodealKey } from '../config/appodeal.config';
 
-const exampleAppodealKey =
-  Platform.OS === 'android'
-    ? 'd908f77a97ae0993514bc8edba7e776a36593c77e5f44994'
-    : 'dee74c5129f53fc629a44a690a02296694e3eef99f2d3a5f';
+// Get Appodeal key from environment config (falls back to demo key)
+const exampleAppodealKey = getAppodealKey();
+
+// Store initialization time globally so RewardedVideoScreen can access it
+let appodealInitializationTime: number | null = null;
 
 interface HomeScreenProps extends BaseScreenProps {}
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   const initializeAppodeal = () => {
-    Appodeal.setTesting(true);
-    Appodeal.setLogLevel(AppodealLogLevel.DEBUG);
+    Appodeal.setTesting(true); // Enable test mode for testing
+    Appodeal.setLogLevel(AppodealLogLevel.VERBOSE); // Use VERBOSE for maximum logging
 
+    // Disable auto-cache for all ad types (manual control via buttons)
     Appodeal.setAutoCache(AppodealAdType.INTERSTITIAL, false);
     Appodeal.setAutoCache(AppodealAdType.REWARDED_VIDEO, false);
+    Appodeal.setAutoCache(AppodealAdType.BANNER, false); // ← FIXED: Disable to prevent conflict with manual cache button
+    console.log('🎯 Banner auto-cache DISABLED (manual control enabled)');
 
     Appodeal.addEventListener(AppodealSdkEvents.INITIALIZED, () => {
-      console.log('Appodeal initialized');
+      appodealInitializationTime = Date.now();
+      // Store globally so RewardedVideoScreen can access it
+      (global as any).appodealInitializationTime = appodealInitializationTime;
+      console.log('✅ Appodeal initialized');
+      console.log(
+        '⏳ OFFICIAL REQUIREMENT: Wait 15 seconds before showing ads'
+      );
+      console.log(
+        '   According to Appodeal docs: "Call show() at least 15 seconds after initialization"'
+      );
+      console.log(
+        '   Source: https://faq.appodeal.com/en/articles/2658372-problem-with-displaying-ads'
+      );
+      console.log(
+        '   Initialization time recorded:',
+        new Date(appodealInitializationTime).toLocaleTimeString()
+      );
+
+      // Check banner availability after initialization
+      setTimeout(() => {
+        const canShowBanner = Appodeal.canShow(AppodealAdType.BANNER);
+        console.log(
+          '🎯 Banner availability check (immediately after init):',
+          canShowBanner
+        );
+      }, 1000);
     });
+
+    console.log('🚀 Starting Appodeal initialization...');
+    console.log('📱 App Key:', exampleAppodealKey);
+    console.log('🎯 Ad Types: REWARDED_VIDEO | BANNER | INTERSTITIAL');
 
     Appodeal.initialize(
       exampleAppodealKey,
-      AppodealAdType.INTERSTITIAL |
-        AppodealAdType.REWARDED_VIDEO |
+      AppodealAdType.REWARDED_VIDEO |
         AppodealAdType.BANNER |
-        AppodealAdType.BANNER_TOP |
-        AppodealAdType.MREC
+        AppodealAdType.INTERSTITIAL
     );
+
+    console.log('✅ Appodeal.initialize() called');
   };
 
   return (
@@ -54,6 +83,16 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 
         <TouchableOpacity style={styles.button} onPress={initializeAppodeal}>
           <Text style={styles.buttonText}>Initialize Appodeal</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#28a745' }]}
+          onPress={async () => {
+            console.log('Starting automated Appodeal connection test...');
+            await runAppodealTest();
+          }}
+        >
+          <Text style={styles.buttonText}>🧪 Run Connection Test</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
