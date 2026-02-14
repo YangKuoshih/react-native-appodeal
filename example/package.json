@@ -10,8 +10,9 @@
     "build:ios": "react-native build-ios --mode Debug"
   },
   "dependencies": {
-    "react": "19.0.0",
-    "react-native": "0.81.4"
+    "react": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-config": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

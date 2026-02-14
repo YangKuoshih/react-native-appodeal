@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+# Pin gems for Ruby 2.6 compatibility
+gem 'ffi', '1.15.5'
+gem 'json', '2.6.3'
+gem 'cocoapods'

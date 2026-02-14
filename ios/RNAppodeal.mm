@@ -105,8 +105,11 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(isPrecache:(double)adType) {
 
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(canShow:(double)showType
                                        placement:(NSString *)placement) {
-    BOOL canShow = [Appodeal canShow:AppodealAdTypeFromRNAAdType(showType)
+    __block BOOL canShow = NO;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        canShow = [Appodeal canShow:AppodealAdTypeFromRNAAdType(showType)
                         forPlacement:placement];
+    });
     return @(canShow);
 }
 
