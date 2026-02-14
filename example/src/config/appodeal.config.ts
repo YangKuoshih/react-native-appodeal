@@ -22,23 +22,22 @@ try {
 }
 
 /**
- * Demo/test Appodeal key for development.
- * This is a PUBLIC demo key for testing the SDK integration.
- * Replace with your own key from the Appodeal dashboard for production.
+ * Public fallback key for testing the SDK integration.
+ * This is ONLY used if no key is provided in .env
  */
-const DEMO_APPODEAL_KEY = 'dee74c5129f53fc629a44a690a02296694e3eef99f2d0a22';
+const PUBLIC_FALLBACK_KEY = 'dee74c5129f53fc629a44a690a02296694e3eef99f2d0a22';
 
 /**
  * Get the Appodeal App Key
- * Uses environment variable if available, otherwise falls back to demo key
+ * Uses environment variable if available, otherwise falls back to public key
  */
 export const getAppodealKey = (): string => {
   const envKey = Config.APPODEAL_APP_KEY;
   if (envKey && envKey !== 'your_appodeal_app_key_here') {
     return envKey;
   }
-  console.log('[Appodeal Config] Using demo Appodeal key');
-  return DEMO_APPODEAL_KEY;
+  console.log('[Appodeal Config] Using public fallback key');
+  return PUBLIC_FALLBACK_KEY;
 };
 
 /**
