@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Appodeal, {
   AppodealAdType,
   AppodealBannerEvents,
@@ -13,7 +19,9 @@ interface BannerScreenProps {
 
 export default function BannerScreen({ navigation }: BannerScreenProps) {
   const [bannerStatus, setBannerStatus] = useState('Not loaded');
-  const [bannerPosition, setBannerPosition] = useState<'top' | 'bottom' | 'none'>('none');
+  const [bannerPosition, setBannerPosition] = useState<
+    'top' | 'bottom' | 'none'
+  >('none');
 
   const showTopBanner = () => {
     setBannerPosition('top');
@@ -62,7 +70,10 @@ export default function BannerScreen({ navigation }: BannerScreenProps) {
     };
     const onFailedToLoad = (error: any) => {
       console.log('❌ ========== BANNER FAILED TO LOAD ==========');
-      console.log('Banner failed to load error:', JSON.stringify(error, null, 2));
+      console.log(
+        'Banner failed to load error:',
+        JSON.stringify(error, null, 2)
+      );
       console.log('Error details:', error);
       console.log('==============================================');
       setBannerStatus('❌ Banner failed to load');
