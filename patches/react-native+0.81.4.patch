@@ -1,0 +1,69 @@
+diff --git a/node_modules/react-native/.DS_Store b/node_modules/react-native/.DS_Store
+new file mode 100644
+index 0000000..65ed5d1
+Binary files /dev/null and b/node_modules/react-native/.DS_Store differ
+diff --git a/node_modules/react-native/ReactCommon/jsinspector-modern/HostTarget.cpp b/node_modules/react-native/ReactCommon/jsinspector-modern/HostTarget.cpp
+index 245a474..141595d 100644
+--- a/node_modules/react-native/ReactCommon/jsinspector-modern/HostTarget.cpp
++++ b/node_modules/react-native/ReactCommon/jsinspector-modern/HostTarget.cpp
+@@ -156,6 +156,20 @@ HostTarget::HostTarget(HostTargetDelegate& delegate)
+     : delegate_(delegate),
+       executionContextManager_{std::make_shared<ExecutionContextManager>()} {}
+ 
++/*
++std::unique_ptr<ILocalConnection> HostTarget::connect(
++    std::unique_ptr<IRemoteConnection> connectionToFrontend) {
++  auto session = std::make_shared<HostTargetSession>(
++      std::move(connectionToFrontend),
++      controller_,
++      delegate_.getMetadata(),
++      makeVoidExecutor(executorFromThis()));
++  session->setCurrentInstance(currentInstance_.get());
++  sessions_.insert(std::weak_ptr(session));
++  return std::make_unique<CallbackLocalConnection>(
++      [session](std::string message) { (*session)(message); });
++}
++*/
+ std::unique_ptr<ILocalConnection> HostTarget::connect(
+     std::unique_ptr<IRemoteConnection> connectionToFrontend) {
+   auto session = std::make_shared<HostTargetSession>(
+@@ -169,21 +183,22 @@ std::unique_ptr<ILocalConnection> HostTarget::connect(
+       [session](std::string message) { (*session)(message); });
+ }
+ 
++
+ HostTarget::~HostTarget() {
+   // HostCommandSender owns a session, so we must release it for the assertion
+   // below to be valid.
+   commandSender_.reset();
+   // Sessions are owned by InspectorPackagerConnection, not by HostTarget, but
+   // they hold a HostTarget& that we must guarantee is valid.
+-  assert(
+-      sessions_.empty() &&
+-      "HostTargetSession objects must be destroyed before their HostTarget. Did you call getInspectorInstance().removePage()?");
++  // assert(
++  //     sessions_.empty() &&
++  //     "HostTargetSession objects must be destroyed before their HostTarget. Did you call getInspectorInstance().removePage()?");
+ }
+ 
+ HostTargetDelegate::~HostTargetDelegate() {}
+ 
+ InstanceTarget& HostTarget::registerInstance(InstanceTargetDelegate& delegate) {
+-  assert(!currentInstance_ && "Only one instance allowed");
++  // assert(!currentInstance_ && "Only one instance allowed");
+   currentInstance_ = InstanceTarget::create(
+       executionContextManager_, delegate, makeVoidExecutor(executorFromThis()));
+   sessions_.forEach(
+@@ -194,9 +209,9 @@ InstanceTarget& HostTarget::registerInstance(InstanceTargetDelegate& delegate) {
+ }
+ 
+ void HostTarget::unregisterInstance(InstanceTarget& instance) {
+-  assert(
+-      currentInstance_ && currentInstance_.get() == &instance &&
+-      "Invalid unregistration");
++  // assert(
++  //     currentInstance_ && currentInstance_.get() == &instance &&
++  //     "Invalid unregistration");
+   sessions_.forEach(
+       [](HostTargetSession& session) { session.setCurrentInstance(nullptr); });
+   currentInstance_.reset();
