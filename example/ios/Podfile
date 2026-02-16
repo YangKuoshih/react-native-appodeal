@@ -120,12 +120,18 @@ target 'AppodealExample' do
   config = use_native_modules!
   use_modular_headers!
   appodeal
-  
+
+  # 🔧 Manually override reactNativePath to point to the root node_modules
+  # bypassing the example/node_modules symlink to fix path resolution issues
+  # with USE_FRAMEWORKS=static in a monorepo.
+  # Relative to example/ios/:
+  config[:reactNativePath] = '../../node_modules/react-native'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/..",
-    :hermes_enabled => true
+    :hermes_enabled => false
   )
 
   post_install do |installer|
@@ -139,9 +145,56 @@ target 'AppodealExample' do
     
     # ⚡️ Optimize build time: Only build active architecture for Debug
     installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        if config.name == 'Debug'
-          config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
+      target.build_configurations.each do |build_config|
+        if build_config.name == 'Debug'
+          build_config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
+        end
+      end
+    end
+
+
+    # 🔧 Fix "Multiple commands produce" errors for duplicate headers
+    # React-Fabric has CopyFiles phases that duplicate headers already
+    # provided by React-FabricComponents (scrollview) and
+    # React-rendererconsistency (consistency). Remove the duplicate
+    # CopyFiles phases from React-Fabric.
+    other_targets = ['React-FabricComponents', 'React-rendererconsistency']
+    other_dst_paths = Set.new
+    other_targets.each do |name|
+      t = installer.pods_project.targets.find { |t| t.name == name }
+      next unless t
+      t.build_phases.each do |phase|
+        next unless phase.is_a?(Xcodeproj::Project::Object::PBXCopyFilesBuildPhase)
+        other_dst_paths.add(phase.dst_path) if phase.dst_path
+      end
+    end
+
+    fabric_target = installer.pods_project.targets.find { |t| t.name == 'React-Fabric' }
+    if fabric_target && !other_dst_paths.empty?
+      # Remove duplicate CopyFiles phases from React-Fabric
+      fabric_target.build_phases.delete_if do |phase|
+        phase.is_a?(Xcodeproj::Project::Object::PBXCopyFilesBuildPhase) &&
+          phase.dst_path && other_dst_paths.include?(phase.dst_path)
+      end
+
+      # Also remove duplicate header entries from React-Fabric's Headers phase
+      other_header_names = Set.new
+      other_targets.each do |name|
+        t = installer.pods_project.targets.find { |t| t.name == name }
+        next unless t
+        t.build_phases.each do |phase|
+          next unless phase.is_a?(Xcodeproj::Project::Object::PBXHeadersBuildPhase)
+          phase.files.each do |file|
+            other_header_names.add(file.display_name) rescue nil
+          end
+        end
+      end
+
+      fabric_target.build_phases.each do |phase|
+        next unless phase.is_a?(Xcodeproj::Project::Object::PBXHeadersBuildPhase)
+        phase.files.delete_if do |file|
+          name = file.display_name rescue nil
+          name && other_header_names.include?(name)
         end
       end
     end
