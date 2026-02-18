@@ -1,25 +1,27 @@
 const path = require('path');
-const { getDefaultConfig } = require('@react-native/metro-config');
-const { withMetroConfig } = require('react-native-monorepo-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 const root = path.resolve(__dirname, '..');
+const projectRoot = __dirname;
 
 /**
- * Metro configuration
+ * Metro configuration for Yarn Workspaces monorepo
  * https://facebook.github.io/metro/docs/configuration
  *
  * @type {import('metro-config').MetroConfig}
  */
-const config = withMetroConfig(getDefaultConfig(__dirname), {
-  root,
-  dirname: __dirname,
-});
+const config = {
+  watchFolders: [root],
 
-// Explicitly add watchFolders to include root node_modules
-config.watchFolders = [
-  __dirname,
-  path.resolve(__dirname, '..'),
-  path.resolve(__dirname, '../node_modules'),
-];
+  resolver: {
+    nodeModulesPaths: [path.resolve(root, 'node_modules')],
+    extraNodeModules: {
+      // Map the monorepo package to its source
+      'react-native-appodeal': path.resolve(root, 'src'),
+      'react': path.resolve(root, 'node_modules/react'),
+      'react-native': path.resolve(root, 'node_modules/react-native'),
+    },
+  },
+};
 
-module.exports = config;
+module.exports = mergeConfig(getDefaultConfig(projectRoot), config);

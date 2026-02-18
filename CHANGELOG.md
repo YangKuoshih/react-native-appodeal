@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.12.0
+
+### Updated SDKs
+
+- Updated Appodeal iOS SDK to [3.12.0](https://docs.appodeal.com/ios/get-started)
+- Updated Appodeal Android SDK to [3.12.0](https://docs.appodeal.com/android/get-started)
+
+### Features
+
+- Fixed `APDBannerView` impression tracking (upstream fix)
+- Fixed crash in `APDAsyncOperation` class (upstream fix)
+- Added Price Floors support in LevelPlay mediation (upstream)
+
 ## 3.10.1
 
 ### Features
