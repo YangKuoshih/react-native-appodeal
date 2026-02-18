@@ -240,7 +240,7 @@ describe('Appodeal SDK', () => {
     });
 
     it('should return correct plugin version', () => {
-      expect(Appodeal.getVersion()).toBe('3.10.1');
+      expect(Appodeal.getVersion()).toBe('3.12.0');
     });
 
     it('should handle consent methods correctly', async () => {
